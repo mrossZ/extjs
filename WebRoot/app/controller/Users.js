@@ -4,7 +4,7 @@ Ext.define('AM.controller.Users',{
 	init:function(){
 		this.control({
 			'viewport > panel':{
-				render:this.onPanelRendered()
+				render:this.onPanelRendered
 			}
 		});
 	},
