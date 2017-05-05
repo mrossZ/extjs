@@ -30,11 +30,25 @@ function initWindow(){
 	win.show();
 }
 function handler(){
-		var el=Ext.query("div:first-child");
-		console.info(el);
+		var el=Ext.DomQuery.selectNode("span[@id='myWin_header_hd-textEl']");
+  		var arr=Ext.query("span");
+  		Ext.DomHelper.insertHtml("afterBegin",Ext.getBody().dom,el.innerHTML);
+  		
+  		
+  		
+  		console.info(Ext.getBody().dom);
+  		
 }
 
 
+
+function testQuery(){
+	var el=Ext.DomQuery.selectNode("div[@class='my']");
+	var el2=Ext.query("div[@class='my']");
+	for(var i=0;i<el2.length;i++){
+		console.info(el2[i].innerHTML);
+	}
+}
 
 
 
