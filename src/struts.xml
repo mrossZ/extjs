@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<!-- START SNIPPET: xworkSample -->
+<struts>
+	<constant name="struts.action.extension" value="do" />    
+	<package name="default" extends="struts-default" namespace="/">
+		<action name="hello" class="action.TestAction">
+			 <result>index.html </result>
+		</action>
+	</package>
+</struts>
+
+<!-- END SNIPPET: xworkSample -->
+
