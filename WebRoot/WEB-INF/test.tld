@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <taglib version="2.0" xmlns="http://java.sun.com/xml/ns/j2ee"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd">
- <description>Joven Taglib</description>
- <display-name>Joven Taglib</display-name>
+ <description>Zw Taglib</description>
+ <display-name>Zw Taglib</display-name>
  <tlib-version>1.1</tlib-version>
- <short-name>jv</short-name>
- <uri>http://www.joven.com.cn</uri>
+ <short-name>zw</short-name>
+ <uri>http://www.zw.com.cn</uri>
  
  <!--自定义标签的 顶级标签-->
  <tag>
   <name>extLib</name>
-  <tag-class>com.joven.web.taglib.ExtLibTag</tag-class>
+  <tag-class>taglib.ExtLibTag</tag-class>
   <body-content>JSP</body-content>
  </tag>
  <!--自定义标签的 顶级标签-->
