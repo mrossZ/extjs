@@ -13,6 +13,8 @@ import org.apache.struts2.components.Component;
 
 import com.opensymphony.xwork2.util.ValueStack;
 
+import instance.BaseInstance;
+
 public class ExtLib extends Component {
 
 	String contextPath;
@@ -46,9 +48,19 @@ public class ExtLib extends Component {
 		} catch (IOException e) {
 			throw new StrutsException("IOError:" + e.getMessage(), e);
 		}
-		
+
 		return super.end(writer, body);
-		
+
+	}
+
+	public boolean regInstance(BaseInstance obj) {
+		String className = obj.getClass().getName();
+		if (instanceList.contains(className))
+			return false;
+		else {
+			instanceList.add(className);
+			return true;
+		}
 	}
 
 }
