@@ -8,9 +8,13 @@
 <struts>
 	<constant name="struts.action.extension" value="do" />    
 	<package name="default" extends="struts-default" namespace="/">
+		
 		<action name="hello" class="action.TestAction">
 			 <result>index.html </result>
 		</action>
+		
+		<!--返回json数据 -->
+		
 	</package>
 </struts>
 

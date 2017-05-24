@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.struts2.StrutsException;
+import org.apache.struts2.components.Component;
 
 import com.opensymphony.xwork2.util.ValueStack;
 
@@ -106,6 +107,18 @@ public class Panel extends Container {
 
 			str.deleteCharAt(str.length() - 2);
 			str.append("});\n");
+			
+			
+			if(!StringUtil.isNull(jvTabPanelId)){
+				str.append("Ext.getCmp('"+jvTabPanelId+"').setContainedPanel(Ext.getCmp('"+this.id+"'));\n");
+			}
+			if(!StringUtil.isNull(jvContainerId)){
+				str.append("Ext.getCmp('"+jvContainerId+"').containedPanel=Ext.getCmp('"+this.id+"');\n");
+				str.append("Ext.getCmp('"+jvContainerId+"').add*Ext.getCmp('"+this.id+"'));\n");
+				
+				str.append("Ext.getBody().unmask();\n");
+			}
+			
 
 			writer.write(str.toString());
 
@@ -115,6 +128,187 @@ public class Panel extends Container {
 
 		return super.end(writer, body);
 	}
+	
+	public void buildProperties(Component component, StringBuilder str) {
+		super.buildProperties(component, str);
+
+		if (!animCollapse)
+			str.append("animCollapse:false,\n");
+
+		if (!StringUtil.isNull(loader)) {
+			str.append("loader:" + loader + ",\n");
+		}
+
+		if (!StringUtil.isNull(baseCls))
+			str.append("baseCls:'" + StringUtil.encodeJs(baseCls) + "',\n");
+
+		if (!bodyBorder)
+			str.append("bodyBorder:false,\n");
+
+		if (!StringUtil.isNull(bodyCls))
+			str.append("bodyCls:'" + StringUtil.encodeJs(bodyCls) + "',\n");
+
+		if (!StringUtil.isNull(bodyStyle))
+			str.append("bodyStyle:'" + StringUtil.encodeJs(bodyStyle) + "',\n");
+
+		if (!border)
+			str.append("border:false,\n");
+
+		if (!StringUtil.isNull(buttonAlign))
+			str.append("buttonAlign:'" + StringUtil.encodeJs(buttonAlign) + "',\n");
+
+		if (closable)
+			str.append("closable:true,\n");
+
+		if (!collapseFirst)
+			str.append("collapseFirst:false,\n");
+
+		if (collapsed)
+			str.append("collapsed:true,\n");
+
+		if (!StringUtil.isNull(collapsedCls))
+			str.append("collapsedCls:'" + StringUtil.encodeJs(collapsedCls) + "',\n");
+
+		if (!StringUtil.isNull(layout)) {
+			if (layout.startsWith("{"))
+				str.append("layout:" + layout + ",\n");
+			else
+				str.append("layout:'" + StringUtil.encodeJs(layout) + "',\n");
+			str.append("viewConfig: {forceFit: true},\n");
+		}
+		
+		if (flex!=null)
+			str.append("flex:" + flex + ",\n");
+
+		if (collapsible)
+			str.append("collapsible:true,\n");
+
+		if (disabled)
+			str.append("disabled:true,\n");
+
+		if (draggable)
+			str.append("draggable:true,\n");
+
+		if (!StringUtil.isNull(elements))
+			str.append("elements:'" + StringUtil.encodeJs(elements) + "',\n");
+
+		if (!StringUtil.isNull(floating))
+			str.append("floating:'" + StringUtil.encodeJs(floating) + "',\n");
+
+		if (footer)
+			str.append("footer:true,\n");
+
+		if (frame)
+			str.append("frame:true,\n");
+
+		if (!header)
+			str.append("header:false,\n");
+
+		if (!headerAsText)
+			str.append("headerAsText:false,\n");
+
+		if (hideCollapseTool)
+			str.append("hideCollapseTool:true,\n");
+
+		if (!maskDisabled)
+			str.append("maskDisabled:false,\n");
+
+		if (minButtonWidth != null)
+			str.append("minButtonWidth:" + minButtonWidth + ",\n");
+
+		if (padding != null)
+			str.append("padding:" + padding + ",\n");
+
+		if (preventBodyReset)
+			str.append("preventBodyReset:true,\n");
+
+		if (!StringUtil.isNull(resizeEvent))
+			str.append("resizeEvent:'" + StringUtil.encodeJs(resizeEvent) + "',\n");
+
+		if (shadow)
+			str.append("shadow:true,\n");
+
+		if (shadowOffset != null)
+			str.append("shadowOffset:" + shadowOffset + ",\n");
+
+		if (!shim)
+			str.append("shim:false,\n");
+
+		if (!StringUtil.isNull(title)) {
+			str.append("title:'" + StringUtil.encodeJs(findString(title)) + "',\n");
+			// str.append("title:'" + StringUtil.encodeJs(title) + "',\n");
+		}
+
+		if (titleCollapse)
+			str.append("titleCollapse:true,\n");
+
+		if (!StringUtil.isNull(jvLovField)) {
+			str.append("lovField:'" + jvLovField + "',\n");
+		}
+		
+		if (split)
+			str.append("split:" + split + ",\n");
+		
+		if (unstyled)
+			str.append("unstyled:true,\n");
+
+		/*
+		if (buttons.size() > 0) {
+			str.append("buttons: [\n");
+			Iterator<Button> it = buttons.iterator();
+			while (it.hasNext()) {
+				str.append("{\n");
+				Button button = it.next();
+				button.buildProperties(this, str);
+				str.deleteCharAt(str.length() - 2);
+				str.append("},\n");
+			}
+			str.deleteCharAt(str.length() - 2);
+			str.append("],\n");
+
+			buttons.clear();
+		}
+		*/
+		
+		if (!StringUtil.isNull(jvTabPanelId)) {
+			str.append("jvTabPanelId:'" + jvTabPanelId + "',\n");
+		}
+		
+		if (!StringUtil.isNull(jvParentWinId)) {
+			str.append("jvParentWinId:'" + jvParentWinId + "',\n");
+		}
+		
+		if (!StringUtil.isNull(jvContainerId)) {
+			str.append("jvContainerId:'" + jvContainerId + "',\n");
+			//str.append("listeners: {\n");
+    		//str.append("afterrender:function() {\n");
+    		//str.append("Ext.getCmp('" + this.id + "').onResizeByContainer(Ext.getCmp('" + jvContainerId + "'))");
+    		//str.append("}\n");
+    		//str.append("},\n");
+		}
+		
+		if (!StringUtil.isNull(afterRender)) {
+			str.append("listeners: {\n");
+    		str.append("render:function() {\n");
+    		str.append(afterRender + "();\n");
+    		str.append("}\n");
+    		str.append("},\n");
+		}
+		
+		/*
+		//tbar
+				if (tbar!=null&&tbar.items.size()>0) {
+					str.append("tbar: ");
+					tbar.buildToolbar(this, str);
+				}
+				//bbar
+				if (bbar!=null&&bbar.items.size()>0) {
+					str.append("bbar: ");
+					bbar.buildToolbar(this, str);
+				} 
+		*/
+	}
+	
 
 	protected void buildInstance(StringBuilder str) {
 		if (instanceObjs.size() > 0) {

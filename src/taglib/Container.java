@@ -81,13 +81,19 @@ public class Container extends BoxComponent {
 			Iterator<ExtComponent> it = items.iterator();
 			while (it.hasNext()) {
 				ExtComponent extItem = it.next();
+				if (extItem instanceof Panel) {
+					str.append("_panel_" + extItem.getId() + ",\n");
+				}
+				/*
 				if (extItem instanceof LabelText) {
 					extItem.buildProperties(this, str);
 				} else if (extItem instanceof Panel) {
 					str.append("_panel_" + extItem.getId() + ",\n");
 				} else if (extItem instanceof RecordSelect) {
 					str.append("_rec_" + ((RecordSelect) extItem).getParentPanel().getId() + ",\n");
-				} else {
+				} 
+				*/
+				else {
 					str.append("{\n");
 
 					extItem.buildProperties(this, str);
@@ -95,6 +101,7 @@ public class Container extends BoxComponent {
 					str.deleteCharAt(str.length() - 2);
 					str.append("},\n");
 				}
+				
 			}
 			if (items.size() > 0)
 				str.deleteCharAt(str.length() - 2);
